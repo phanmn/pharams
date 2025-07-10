@@ -39,9 +39,9 @@ defmodule Pharams.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:phoenix, ">= 1.3.0"},
-      {:plug, "~> 1.6"},
-      {:ecto, "~> 2.0"},
+      {:phoenix, "~> 1.7"},
+      {:plug, "~> 1.18"},
+      {:ecto, "~> 3.0"},
       {:ex_doc, "~> 0.17", only: :dev, runtime: false}
     ]
   end
