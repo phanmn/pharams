@@ -3,6 +3,8 @@ defmodule Pharams.Utils do
 
   alias Pharams.{SchemaUtils, ValidationUtils}
 
+  def split_basic_and_group_fields({:__block__, _, ast}), do: split_basic_and_group_fields(ast)
+
   def split_basic_and_group_fields(ast) do
     Enum.split_with(ast, fn
       {_req, _line, [_field, _type, opts]} when is_list(opts) ->
