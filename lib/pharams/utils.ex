@@ -2,11 +2,15 @@ defmodule Pharams.Utils do
   @moduledoc false
 
   alias Pharams.{SchemaUtils, ValidationUtils}
-
-  def split_basic_and_group_fields({:__block__, _, ast}), do: split_basic_and_group_fields(ast)
+  require Logger
 
   def split_basic_and_group_fields(ast) do
-    Enum.split_with(ast, fn
+    ast
+    |> Enum.flat_map(fn
+      {:__block__, _, inner} when is_list(inner) -> inner
+      other -> [other]
+    end)
+    |> Enum.split_with(fn
       {_req, _line, [_field, _type, opts]} when is_list(opts) ->
         not Keyword.has_key?(opts, :do)
 
